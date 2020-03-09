@@ -1,5 +1,9 @@
 # sre.k3s.provisionor
 
+## 安裝懶人包腳本
+
+infra-install.sh
+
 ## Install
 
 cp k3s-14 /usr/local/bin/k3s 
