@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: ingress-nginx
+secrets:
+- name: default-token
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-ingress-serviceaccount
+  namespace: ingress-nginx
+secrets:
+- name: nginx-ingress-serviceaccount-token

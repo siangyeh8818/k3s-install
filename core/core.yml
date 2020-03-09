@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: scripts-service
+spec:
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: scripts-service
+    spec:
+      containers:
+      - name: scripts-service
+        image: cr.pentium.network/scripts-service:0.157.20191029194839
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: pn-config
+          mountPath: "/home/app/config/json"
+      volumes:
+      - name: pn-config
+        secret:
+          secretName: pn-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: scripts-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: scripts-service
+

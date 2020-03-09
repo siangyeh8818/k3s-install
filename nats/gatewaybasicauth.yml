@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gateway-basic-auth
+data:
+  basic-auth-password: cGVudGl1bW9wZW5mYWFzCg==
+  basic-auth-user: YWRtaW4=
